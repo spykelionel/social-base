@@ -1,0 +1,38 @@
+{
+  "name": "social-base",
+  "version": "1.0.0",
+  "description": "Simple api to network with users.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js --watch",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spykelionel/social-base.git"
+  },
+  "keywords": [
+    "Node",
+    "express",
+    "Mongodb",
+    "devajs"
+  ],
+  "author": "spykelionel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spykelionel/social-base/issues"
+  },
+  "homepage": "https://github.com/spykelionel/social-base#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.1.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}
