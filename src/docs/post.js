@@ -9,7 +9,9 @@ const postResponse = {
 const postResponseWp = {
   title: { example: "The patriot" },
   body: { example: "Some descriot" },
-  attachment: { example: "https://www.jsonplaceholder.com/images/ur39oeto.jpg" },
+  attachment: {
+    example: "https://www.jsonplaceholder.com/images/ur39oeto.jpg",
+  },
 };
 
 const createPost = {
@@ -44,7 +46,6 @@ const createPost = {
   },
 };
 
-
 const deletePost = {
   tags: ["Post"],
   description: "Delete a post",
@@ -70,7 +71,6 @@ const deletePost = {
     409: serverResponses[409],
   },
 };
-
 
 const getAllPosts = {
   tags: ["Post"],
@@ -134,6 +134,79 @@ const getSinglePost = {
         },
       },
     },
+    401: serverResponses[401],
+    404: serverResponses[404],
+    500: serverResponses[500],
+  },
+};
+
+const saveSinglePost = {
+  tags: ["Post"],
+  description: "save a post",
+  operationId: "saveSinglePost",
+  parameters: [
+    {
+      name: "",
+      in: "path",
+      description: "post's ID",
+      required: true,
+      type: "int",
+    },
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  responses: {
+    200: {
+      description: "posts saved successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: postResponseWp,
+          },
+        },
+      },
+    },
+    401: serverResponses[401],
+    404: serverResponses[404],
+    500: serverResponses[500],
+  },
+};
+
+const deleteSavedPost = {
+  tags: ["Post"],
+  description: "delete a saved post",
+  operationId: "deleteSavedPost",
+  parameters: [
+    {
+      name: "",
+      in: "path",
+      description: "post's ID",
+      required: true,
+      type: "int",
+    },
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  responses: {
+    200: {
+      description: "posts saved successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: postResponseWp,
+          },
+        },
+      },
+    },
+    204: serverResponses[204],
     401: serverResponses[401],
     404: serverResponses[404],
     500: serverResponses[500],
@@ -209,7 +282,6 @@ const createPostBody = {
   },
 };
 
-
 const postPaths = {
   "/posts/create": {
     post: createPost,
@@ -222,11 +294,14 @@ const postPaths = {
     patch: updateSinglePost,
     delete: deletePost,
   },
-
+  "/posts/save/{post_id}": {
+    post: saveSinglePost,
+    delete: deleteSavedPost,
+  },
 };
 
 const postSchema = {
   createPostBody,
 };
 
-module.exports =  { postPaths, postSchema };
+module.exports = { postPaths, postSchema };
