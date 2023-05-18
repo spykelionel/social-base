@@ -57,7 +57,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "Server status 4" });
+  res.redirect('/v1/docs')
 });
 
 module.exports = app;
