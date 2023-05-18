@@ -10,7 +10,6 @@ const userResponseWp = {
   firstname: { example: "John" },
   lastname: { example: "Snow" },
   email: { example: "john.snow@email.com" },
-  user_type: { example: "NORMAL" },
 };
 
 const createUser = {
