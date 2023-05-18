@@ -1,25 +1,25 @@
 const { serverResponses, bearerAuth } = require("./response.js");
 
-const commentResponse = {
+const likeResponse = {
   post_id: { example: "ae230tyhmna3tafgd" },
   body: { example: "Some descriot" },
 };
 
-const commentResponseWp = {
+const likeResponseWp = {
   post_id: { example: "ae230tyhmna3tafgd" },
   body: { example: "Some descriot" },
 };
 
-const createComment = {
-  tags: ["Comment"],
-  description: "Create a new Comment in the system",
-  operationId: "createComment",
+const createLike = {
+  tags: ["Like"],
+  description: "Create a new Like in the system",
+  operationId: "createLike",
   security: [],
   requestBody: {
     content: {
       "application/json": {
         schema: {
-          $ref: "#/components/schemas/createCommentBody",
+          $ref: "#/components/schemas/createLikeBody",
         },
       },
     },
@@ -27,12 +27,12 @@ const createComment = {
   },
   responses: {
     201: {
-      description: "Comment created successfully!",
+      description: "Like created successfully!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: commentResponseWp,
+            properties: likeResponseWp,
           },
         },
       },
@@ -42,10 +42,10 @@ const createComment = {
   },
 };
 
-const deleteComment = {
-  tags: ["Comment"],
-  description: "Delete a Comment",
-  operationId: "deleteComment",
+const deleteLike = {
+  tags: ["Like"],
+  description: "Delete a Like",
+  operationId: "deleteLike",
   security: [
     {
       bearerAuth,
@@ -55,7 +55,7 @@ const deleteComment = {
     {
       name: "",
       in: "path",
-      description: "Comment ID",
+      description: "Like ID",
       required: true,
       type: "string",
     },
@@ -68,10 +68,10 @@ const deleteComment = {
   },
 };
 
-const getAllComments = {
-  tags: ["Comment"],
-  description: "Get all Comments in the system",
-  operationId: "getAllComments",
+const getAllLikes = {
+  tags: ["Like"],
+  description: "Get all Likes in the system",
+  operationId: "getAllLikes",
   security: [
     {
       bearerAuth: [],
@@ -79,7 +79,7 @@ const getAllComments = {
   ],
   responses: {
     200: {
-      description: "Comments returned successfully!",
+      description: "Likes returned successfully!",
       content: {
         "application/json": {
           schema: {
@@ -87,7 +87,7 @@ const getAllComments = {
             properties: {
               data: {
                 type: "array",
-                example: [commentResponse, commentResponse],
+                example: [likeResponse, likeResponse],
               },
             },
           },
@@ -100,15 +100,15 @@ const getAllComments = {
   },
 };
 
-const getSingleComment = {
-  tags: ["Comment"],
-  description: "Get a Comment",
-  operationId: "getSingleComment",
+const getSingleLike = {
+  tags: ["Like"],
+  description: "Get a Like",
+  operationId: "getSingleLike",
   parameters: [
     {
       name: "",
       in: "path",
-      description: "Comment's ID",
+      description: "Like's ID",
       required: true,
       type: "int",
     },
@@ -120,12 +120,12 @@ const getSingleComment = {
   ],
   responses: {
     200: {
-      description: "Comments returned successfully!",
+      description: "Likes returned successfully!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: commentResponseWp,
+            properties: likeResponseWp,
           },
         },
       },
@@ -136,15 +136,15 @@ const getSingleComment = {
   },
 };
 
-const updateSingleComment = {
-  tags: ["Comment"],
-  description: "Update a Comment in the system",
-  operationId: "updateSingleComment",
+const updateSingleLike = {
+  tags: ["Like"],
+  description: "Update a Like in the system",
+  operationId: "updateSingleLike",
   parameters: [
     {
       name: "",
       in: "path",
-      description: "Comment's ID",
+      description: "Like's ID",
       required: true,
       type: "int",
     },
@@ -158,7 +158,7 @@ const updateSingleComment = {
     content: {
       "application/json": {
         schema: {
-          $ref: "#/components/schemas/createCommentBody",
+          $ref: "#/components/schemas/createLikeBody",
         },
       },
     },
@@ -166,12 +166,12 @@ const updateSingleComment = {
   },
   responses: {
     201: {
-      description: "Comment!",
+      description: "Like!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: commentResponse,
+            properties: likeResponse,
           },
         },
       },
@@ -182,37 +182,33 @@ const updateSingleComment = {
   },
 };
 
-const createCommentBody = {
+const createLikeBody = {
   type: "object",
   properties: {
     post_id: {
       type: "string",
-      description: "Author of the Comment",
+      description: "ID of the post",
       example: "_ea2344ygfvdft943io!",
     },
-    body: {
-      type: "string",
-      example: "Snow",
-    },
   },
 };
 
-const commentPaths = {
-  "/comments/create": {
-    Comment: createComment,
+const likePaths = {
+  "/likes/create": {
+    Like: createLike,
   },
-  "/comments/": {
-    get: getAllComments,
+  "/likes/": {
+    get: getAllLikes,
   },
-  "/comments/{comment_id}": {
-    get: getSingleComment,
-    patch: updateSingleComment,
-    delete: deleteComment,
+  "/likes/{like_id}": {
+    get: getSingleLike,
+    patch: updateSingleLike,
+    delete: deleteLike,
   },
 };
 
-const commentSchema = {
-  createCommentBody,
+const likeSchema = {
+  createLikeBody,
 };
 
-module.exports = { commentPaths, commentSchema };
+module.exports = { likePaths, likeSchema };
