@@ -1,29 +1,25 @@
 const { serverResponses, bearerAuth } = require("./response.js");
 
-const postResponse = {
-  title: "John",
-  body: "Snow",
-  attachment: "john.snow@attachment.com",
+const jobResponse = {
+  title: "Fullstack developer needed at Netgink Corp",
+  description: "Developer must understand SDLC",
 };
 
-const postResponseWp = {
-  title: { example: "The patriot" },
-  body: { example: "Some descriot" },
-  attachment: {
-    example: "https://www.jsonplaceholder.com/images/ur39oeto.jpg",
-  },
+const jobResponseWp = {
+  title: { example: "Fullstack developer needed at Netgink Corp" },
+  description: { example: "Developer must understand SDLC" },
 };
 
-const createPost = {
-  tags: ["Post"],
-  description: "Create a new post in the system",
-  operationId: "createPost",
+const createJob = {
+  tags: ["Job"],
+  description: "Create a new Job in the system",
+  operationId: "createJob",
   security: [],
   requestBody: {
     content: {
       "application/json": {
         schema: {
-          $ref: "#/components/schemas/createPostBody",
+          $ref: "#/components/schemas/createJobBody",
         },
       },
     },
@@ -31,12 +27,12 @@ const createPost = {
   },
   responses: {
     201: {
-      description: "post created successfully!",
+      description: "Job created successfully!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: postResponseWp,
+            properties: jobResponseWp,
           },
         },
       },
@@ -46,10 +42,10 @@ const createPost = {
   },
 };
 
-const deletePost = {
-  tags: ["Post"],
-  description: "Delete a post",
-  operationId: "deletePost",
+const deleteJob = {
+  tags: ["Job"],
+  description: "Delete a Job",
+  operationId: "deleteJob",
   security: [
     {
       bearerAuth,
@@ -59,7 +55,7 @@ const deletePost = {
     {
       name: "",
       in: "path",
-      description: "post ID",
+      description: "Job ID",
       required: true,
       type: "string",
     },
@@ -72,10 +68,10 @@ const deletePost = {
   },
 };
 
-const getAllPosts = {
-  tags: ["Post"],
-  description: "Get all posts in the system",
-  operationId: "getAllPosts",
+const getAllJobs = {
+  tags: ["Job"],
+  description: "Get all Jobs in the system",
+  operationId: "getAllJobs",
   security: [
     {
       bearerAuth: [],
@@ -83,7 +79,7 @@ const getAllPosts = {
   ],
   responses: {
     200: {
-      description: "Posts returned successfully!",
+      description: "Jobs returned successfully!",
       content: {
         "application/json": {
           schema: {
@@ -91,7 +87,7 @@ const getAllPosts = {
             properties: {
               data: {
                 type: "array",
-                example: [postResponse, postResponse],
+                example: [jobResponse, jobResponse],
               },
             },
           },
@@ -104,15 +100,15 @@ const getAllPosts = {
   },
 };
 
-const getSinglePost = {
-  tags: ["Post"],
-  description: "Get a post",
-  operationId: "getSinglePost",
+const getSingleJob = {
+  tags: ["Job"],
+  description: "Get a Job",
+  operationId: "getSingleJob",
   parameters: [
     {
       name: "",
       in: "path",
-      description: "post's ID",
+      description: "Job's ID",
       required: true,
       type: "int",
     },
@@ -124,12 +120,12 @@ const getSinglePost = {
   ],
   responses: {
     200: {
-      description: "posts returned successfully!",
+      description: "Jobs returned successfully!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: postResponseWp,
+            properties: jobResponseWp,
           },
         },
       },
@@ -140,15 +136,15 @@ const getSinglePost = {
   },
 };
 
-const saveSinglePost = {
-  tags: ["Post"],
-  description: "save a post",
-  operationId: "saveSinglePost",
+const saveSingleJob = {
+  tags: ["Job"],
+  description: "save a Job",
+  operationId: "saveSingleJob",
   parameters: [
     {
       name: "",
       in: "path",
-      description: "post's ID",
+      description: "Job's ID",
       required: true,
       type: "int",
     },
@@ -160,12 +156,12 @@ const saveSinglePost = {
   ],
   responses: {
     200: {
-      description: "posts saved successfully!",
+      description: "Jobs saved successfully!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: postResponseWp,
+            properties: jobResponseWp,
           },
         },
       },
@@ -176,15 +172,15 @@ const saveSinglePost = {
   },
 };
 
-const deleteSavedPost = {
-  tags: ["Post"],
-  description: "delete a saved post",
-  operationId: "deleteSavedPost",
+const deleteSavedJob = {
+  tags: ["Job"],
+  description: "delete a saved Job",
+  operationId: "deleteSavedJob",
   parameters: [
     {
       name: "",
       in: "path",
-      description: "post's ID",
+      description: "Job's ID",
       required: true,
       type: "int",
     },
@@ -196,12 +192,12 @@ const deleteSavedPost = {
   ],
   responses: {
     200: {
-      description: "posts saved successfully!",
+      description: "Jobs saved successfully!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: postResponseWp,
+            properties: jobResponseWp,
           },
         },
       },
@@ -213,15 +209,15 @@ const deleteSavedPost = {
   },
 };
 
-const updateSinglePost = {
-  tags: ["Post"],
-  description: "Update a post in the system",
-  operationId: "updateSinglePost",
+const updateSingleJob = {
+  tags: ["Job"],
+  description: "Update a Job in the system",
+  operationId: "updateSingleJob",
   parameters: [
     {
       name: "",
       in: "path",
-      description: "post's ID",
+      description: "Job's ID",
       required: true,
       type: "int",
     },
@@ -235,7 +231,7 @@ const updateSinglePost = {
     content: {
       "application/json": {
         schema: {
-          $ref: "#/components/schemas/createPostBody",
+          $ref: "#/components/schemas/createJobBody",
         },
       },
     },
@@ -243,12 +239,12 @@ const updateSinglePost = {
   },
   responses: {
     201: {
-      description: "post!",
+      description: "Job!",
       content: {
         "application/json": {
           schema: {
             type: "object",
-            properties: postResponse,
+            properties: jobResponse,
           },
         },
       },
@@ -259,44 +255,40 @@ const updateSinglePost = {
   },
 };
 
-const createPostBody = {
+const createJobBody = {
   type: "object",
   properties: {
     title: {
       type: "string",
-      example: "John",
+      example: "Fullstack developer needed at Netgink Corp",
     },
-    body: {
+    description: {
       type: "string",
-      example: "Snow",
-    },
-    attachment: {
-      type: "string",
-      example: "john.snow@attachment.com",
+      example: "Developer must understand SDLC",
     },
   },
 };
 
-const postPaths = {
-  "/posts/create": {
-    post: createPost,
+const jobPaths = {
+  "/jobs/create": {
+    Job: createJob,
   },
-  "/posts/": {
-    get: getAllPosts,
+  "/jobs/": {
+    get: getAllJobs,
   },
-  "/posts/{post_id}": {
-    get: getSinglePost,
-    patch: updateSinglePost,
-    delete: deletePost,
+  "/jobs/{job_id}": {
+    get: getSingleJob,
+    patch: updateSingleJob,
+    delete: deleteJob,
   },
-  "/posts/save/{post_id}": {
-    post: saveSinglePost,
-    delete: deleteSavedPost,
+  "/jobs/save/{job_id}": {
+    Job: saveSingleJob,
+    delete: deleteSavedJob,
   },
 };
 
-const postSchema = {
-  createPostBody,
+const jobSchema = {
+  createJobBody,
 };
 
-module.exports = { postPaths, postSchema };
+module.exports = { jobPaths, jobSchema };
