@@ -37,7 +37,7 @@ const logger = winston.createLogger({
             ),
         }),
         new winston.transports.File({
-            filename: path.join(__dirname, "./../logs/all.log"),
+            filename: path.join(__dirname, "./../../logs/all.log"),
             format: combine(timestamp(), json({ deterministic: false })),
         }),
         new winston.transports.File({
@@ -46,7 +46,7 @@ const logger = winston.createLogger({
             format: combine(errorFilter()),
         }),
         new winston.transports.File({
-            filename: path.join(__dirname, "./../logs/app-info.log"),
+            filename: path.join(__dirname, "./../../logs/app-info.log"),
             level: "info",
             format: combine(
                 infoFilter(),
@@ -55,7 +55,7 @@ const logger = winston.createLogger({
             ),
         }),
         new winston.transports.File({
-            filename: path.join(__dirname, "./../logs/app-warn.log"),
+            filename: path.join(__dirname, "./../../logs/app-warn.log"),
             level: "warn",
             format: combine(
                 infoFilter(),
@@ -64,7 +64,7 @@ const logger = winston.createLogger({
             ),
         }),
         new winston.transports.File({
-            filename: path.join(__dirname, "./../logs/app-debug.log"),
+            filename: path.join(__dirname, "./../../logs/app-debug.log"),
             level: "debug",
             format: combine(
                 infoFilter(),
