@@ -1,3 +1,4 @@
+const { commentPaths, commentSchema } = require("./comment");
 const { postSchema, postPaths } = require("./post");
 const { userPaths, userSchema } = require("./user");
 const apiV1 = {
@@ -31,6 +32,7 @@ const apiV1 = {
   paths: {
     ...userPaths,
     ...postPaths,
+    ...commentPaths,
   },
   components: {
     securitySchemes: {
@@ -43,6 +45,7 @@ const apiV1 = {
     schemas: {
       ...userSchema,
       ...postSchema,
+      ...commentSchema
     },
     responses: {
       UnauthorizedError: {
