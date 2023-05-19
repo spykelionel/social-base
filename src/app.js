@@ -9,6 +9,7 @@ const fs = require('fs');
 const path = require('path')
 const config = require("./config/env.config");
 const apiV1 = require("./docs");
+const userRouter = require("./routes/user.routes");
 
 
 const app = express();
@@ -55,6 +56,8 @@ app.use(
         customSiteTitle: "Social base | V1 | Documentation",
     })
 );
+
+app.use('/v1/users', userRouter);
 
 app.get("/", (req, res) => {
   res.redirect('/v1/docs')
