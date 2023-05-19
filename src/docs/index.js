@@ -21,6 +21,10 @@ const apiV1 = {
   },
   servers: [
     {
+      url: "https://social-base.onrender.com/v1/",
+      description: "Production Server",
+    },
+    {
       url: "http://localhost:3000/v1/",
       description: "Dev Server",
     },
