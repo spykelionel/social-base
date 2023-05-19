@@ -1,5 +1,5 @@
 const winston = require("winston");
-const path = require("node:path");
+const path = require("path");
 
 const { combine, timestamp, json, prettyPrint, simple, colorize } =
     winston.format;
