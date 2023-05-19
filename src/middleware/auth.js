@@ -31,6 +31,8 @@ const login = async (req, res) => {
         res.status(201).json({
           message: "Auth Successful",
           token,
+          ...user["_doc"],
+          password: undefined,
           ACK: result,
         });
       });
