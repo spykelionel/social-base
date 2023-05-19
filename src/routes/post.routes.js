@@ -19,8 +19,8 @@ postRouter
   .delete("/save/:post_id", verify, deleteSavedPost)
   .put("/like/:post_id", verify, likePost)
   .delete("/like/:post_id", verify, deleteLikedPost)
-  .get("/", verify, getAll)
-  .get("/:post_id", verify, getOne)
+  .get("/", getAll)
+  .get("/:post_id", getOne)
   .delete("/:post_id", verify, deleteOne)
   .patch("/:post_id", verify, update);
 

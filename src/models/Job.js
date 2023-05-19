@@ -9,7 +9,7 @@ const jobSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    userId: {
+    authorId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,

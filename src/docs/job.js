@@ -14,7 +14,11 @@ const createJob = {
   tags: ["Job"],
   description: "Create a new Job in the system",
   operationId: "createJob",
-  security: [],
+  security: [
+    {
+      bearerAuth
+    }
+  ],
   requestBody: {
     content: {
       "application/json": {
@@ -271,7 +275,7 @@ const createJobBody = {
 
 const jobPaths = {
   "/jobs/create": {
-    Job: createJob,
+    post: createJob,
   },
   "/jobs/": {
     get: getAllJobs,
@@ -282,7 +286,7 @@ const jobPaths = {
     delete: deleteJob,
   },
   "/jobs/save/{job_id}": {
-    Job: saveSingleJob,
+    put: saveSingleJob,
     delete: deleteSavedJob,
   },
 };
