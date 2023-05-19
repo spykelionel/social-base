@@ -44,7 +44,7 @@ module.exports = {
   },
 
   getAll: async (req, res) => {
-    await User.find({})
+    await User.find()
       .lean()
       .then((result) => res.status(200).json(result))
       .catch((err) => res.status(503).json(err));
@@ -138,6 +138,4 @@ module.exports = {
       })
       .catch((err) => logger.error(err));
   },
-  login: require("./../middleware/auth").login,
-  verify: require("./../middleware/auth").verify,
 };
