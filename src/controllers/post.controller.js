@@ -1,27 +1,42 @@
 const logger = require("../config/logger.config");
 const Post = require("../models/Post");
 const User = require("../models/User");
+const cloudinary = require('../config/cloudinary.config')
 
 module.exports = {
   create: async (req, res) => {
     const user = req.user;
     try {
-      const post = new Post({
-        ...req.body,
-        authorId: user._id,
-        attachment: req?.file?.path ?? undefined,
-      });
-      await post
-        .save()
-        .then((result) => {
-          return res.status(201).json(result);
+      logger.error("IMAGE_PATH1", req.file);
+      cloudinary.uploader
+        .upload(req.file.path, { folder: "social-base" })
+        .then(async (cloud_image) => {
+          logger.info("[SUCCESS-UPLOAD]: CLOUDINARY", cloud_image);
+          const image = cloud_image.secure_url;
+          try {
+            const post = new Post({
+              ...req.body,
+              authorId: user._id,
+              attachment: image,
+            });
+            await post
+              .save()
+              .then((result) => {
+                return res.status(201).json(result);
+              })
+              .catch((err) => {
+                return res.status(501).json(err);
+              });
+          } catch (error) {
+            logger.error(error);
+            return res.status(501).json(error);
+          }
         })
         .catch((err) => {
-          return res.status(501).json(err);
+          logger.error("[ERROR-UPLOAD]: CLOUDINARY upload error", err);
         });
     } catch (error) {
-      logger.error(error);
-      return res.status(501).json(error);
+      logger.error("[ERROR-UPLOAD]: CLOUDINARY upload error", error);
     }
   },
 

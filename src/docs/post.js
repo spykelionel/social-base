@@ -25,7 +25,7 @@ const createPost = {
   ],
   requestBody: {
     content: {
-      "application/json": {
+      "multipart/form-data": {
         schema: {
           $ref: "#/components/schemas/createPostBody",
         },
@@ -348,7 +348,7 @@ const createPostBody = {
       example: "Snow",
     },
     attachment: {
-      type: "string",
+      type: "file",
       example: "john.snow@attachment.com",
     },
   },

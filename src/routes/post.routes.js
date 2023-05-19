@@ -10,11 +10,12 @@ const {
   deleteLikedPost,
 } = require("../controllers/post.controller");
 const { verify, } = require("../middleware/auth");
+const upload = require('./../config/multer.config')
 
 const postRouter = require("express").Router({ strict: false });
 
 postRouter
-  .post("/create", verify, create)
+  .post("/create", verify, upload.single("attachment"), create)
   .put("/save/:post_id", verify, savePost)
   .delete("/save/:post_id", verify, deleteSavedPost)
   .put("/like/:post_id", verify, likePost)
