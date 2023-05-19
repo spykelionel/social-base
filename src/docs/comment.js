@@ -1,12 +1,12 @@
 const { serverResponses, bearerAuth } = require("./response.js");
 
 const commentResponse = {
-  post_id: { example: "ae230tyhmna3tafgd" },
+  comment_id: { example: "ae230tyhmna3tafgd" },
   body: { example: "Some descriot" },
 };
 
 const commentResponseWp = {
-  post_id: { example: "ae230tyhmna3tafgd" },
+  comment_id: { example: "ae230tyhmna3tafgd" },
   body: { example: "Some descriot" },
 };
 
@@ -14,7 +14,11 @@ const createComment = {
   tags: ["Comment"],
   description: "Create a new Comment in the system",
   operationId: "createComment",
-  security: [],
+  security: [
+  {
+    bearerAuth
+  }
+  ],
   requestBody: {
     content: {
       "application/json": {
@@ -38,6 +42,7 @@ const createComment = {
       },
     },
     500: serverResponses[500],
+    501: serverResponses[501],
     409: serverResponses[409],
   },
 };
@@ -182,24 +187,97 @@ const updateSingleComment = {
   },
 };
 
+const likeSingleComment = {
+  tags: ["Comment"],
+  description: "like a Comment",
+  operationId: "likeSingleComment",
+  parameters: [
+    {
+      name: "comment_id",
+      in: "path",
+      description: "Comment's ID",
+      required: true,
+      type: "int",
+    },
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  responses: {
+    200: {
+      description: "Comments saved successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: commentResponseWp,
+          },
+        },
+      },
+    },
+    401: serverResponses[401],
+    404: serverResponses[404],
+    500: serverResponses[500],
+  },
+};
+
+const deletelikedComment = {
+  tags: ["Comment"],
+  description: "delete a like from a Comment",
+  operationId: "deletelikedComment",
+  parameters: [
+    {
+      name: "comment_id",
+      in: "path",
+      description: "Comment's ID",
+      required: true,
+      type: "int",
+    },
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  responses: {
+    200: {
+      description: "Comments saved successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: commentResponseWp,
+          },
+        },
+      },
+    },
+    204: serverResponses[204],
+    401: serverResponses[401],
+    404: serverResponses[404],
+    500: serverResponses[500],
+  },
+};
+
 const createCommentBody = {
   type: "object",
   properties: {
-    post_id: {
+    postId: {
       type: "string",
       description: "Author of the Comment",
-      example: "_ea2344ygfvdft943io!",
+      example: "_ea2344ygfvdft943io",
     },
     body: {
       type: "string",
-      example: "Snow",
+      example: "I love rainy dqays",
     },
   },
 };
 
 const commentPaths = {
   "/comments/create": {
-    Comment: createComment,
+    post: createComment,
   },
   "/comments/": {
     get: getAllComments,
@@ -208,6 +286,10 @@ const commentPaths = {
     get: getSingleComment,
     patch: updateSingleComment,
     delete: deleteComment,
+  },
+  "/comments/like/{comment_id}": {
+    put: likeSingleComment,
+    delete: deletelikedComment,
   },
 };
 
