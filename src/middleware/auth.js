@@ -20,15 +20,15 @@ const login = async (req, res) => {
         }
         const token = jwt.sign(
           {
-            active_user: user.email,
+            user: user.email,
             id: user._id,
           },
           config.JWT_SECRET,
           {
-            expiresIn: "1h",
+            expiresIn: "1d",
           }
         );
-        res.status(200).json({
+        res.status(201).json({
           message: "Auth Successful",
           token,
           ACK: result,
@@ -37,6 +37,17 @@ const login = async (req, res) => {
     }
   });
 };
-const verify = () => {};
+const verify = (req, res, next) => {
+    try {
+        const token = req.headers["authorization"].split(" ")[1];
+        req.user = jwt.verify(token, config.JWT_SECRET);
+        next();
+      } catch (error) {
+        logger.error("Error verifying user", error)
+          return res.status(401).json({
+              message: "Auth failed"
+          })
+      }
+};
 
 module.exports = { login, verify };
