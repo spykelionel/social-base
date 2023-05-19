@@ -53,7 +53,7 @@ const deleteLike = {
   ],
   parameters: [
     {
-      name: "",
+      name: "like_id",
       in: "path",
       description: "Like ID",
       required: true,
@@ -106,7 +106,7 @@ const getSingleLike = {
   operationId: "getSingleLike",
   parameters: [
     {
-      name: "",
+      name: "like_id",
       in: "path",
       description: "Like's ID",
       required: true,
@@ -142,7 +142,7 @@ const updateSingleLike = {
   operationId: "updateSingleLike",
   parameters: [
     {
-      name: "",
+      name: "like_id",
       in: "path",
       description: "Like's ID",
       required: true,

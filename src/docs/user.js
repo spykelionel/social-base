@@ -98,7 +98,7 @@ const deleteUser = {
   ],
   parameters: [
     {
-      name: "",
+      name: "user_id",
       in: "path",
       description: "User ID",
       required: true,
@@ -152,7 +152,7 @@ const getSingleUser = {
   operationId: "getSingleUser",
   parameters: [
     {
-      name: "",
+      name: "user_id",
       in: "path",
       description: "user's ID",
       required: true,
@@ -188,7 +188,7 @@ const updateSingleUser = {
   operationId: "updateSingleUser",
   parameters: [
     {
-      name: "",
+      name: "user_id",
       in: "path",
       description: "user's ID",
       required: true,

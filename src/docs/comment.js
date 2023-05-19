@@ -53,7 +53,7 @@ const deleteComment = {
   ],
   parameters: [
     {
-      name: "",
+      name: "comment_id",
       in: "path",
       description: "Comment ID",
       required: true,
@@ -106,7 +106,7 @@ const getSingleComment = {
   operationId: "getSingleComment",
   parameters: [
     {
-      name: "",
+      name: "comment_id",
       in: "path",
       description: "Comment's ID",
       required: true,
@@ -142,7 +142,7 @@ const updateSingleComment = {
   operationId: "updateSingleComment",
   parameters: [
     {
-      name: "",
+      name: "comment_id",
       in: "path",
       description: "Comment's ID",
       required: true,

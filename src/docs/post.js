@@ -57,7 +57,7 @@ const deletePost = {
   ],
   parameters: [
     {
-      name: "",
+      name: "post_id",
       in: "path",
       description: "post ID",
       required: true,
@@ -110,7 +110,7 @@ const getSinglePost = {
   operationId: "getSinglePost",
   parameters: [
     {
-      name: "",
+      name: "post_id",
       in: "path",
       description: "post's ID",
       required: true,
@@ -146,7 +146,7 @@ const saveSinglePost = {
   operationId: "saveSinglePost",
   parameters: [
     {
-      name: "",
+      name: "post_id",
       in: "path",
       description: "post's ID",
       required: true,
@@ -182,7 +182,7 @@ const deleteSavedPost = {
   operationId: "deleteSavedPost",
   parameters: [
     {
-      name: "",
+      name: "post_id",
       in: "path",
       description: "post's ID",
       required: true,
@@ -219,7 +219,7 @@ const updateSinglePost = {
   operationId: "updateSinglePost",
   parameters: [
     {
-      name: "",
+      name: "post_id",
       in: "path",
       description: "post's ID",
       required: true,

@@ -53,7 +53,7 @@ const deleteJob = {
   ],
   parameters: [
     {
-      name: "",
+      name: "job_id",
       in: "path",
       description: "Job ID",
       required: true,
@@ -106,7 +106,7 @@ const getSingleJob = {
   operationId: "getSingleJob",
   parameters: [
     {
-      name: "",
+      name: "job_id",
       in: "path",
       description: "Job's ID",
       required: true,
@@ -142,7 +142,7 @@ const saveSingleJob = {
   operationId: "saveSingleJob",
   parameters: [
     {
-      name: "",
+      name: "job_id",
       in: "path",
       description: "Job's ID",
       required: true,
@@ -178,7 +178,7 @@ const deleteSavedJob = {
   operationId: "deleteSavedJob",
   parameters: [
     {
-      name: "",
+      name: "job_id",
       in: "path",
       description: "Job's ID",
       required: true,
@@ -215,7 +215,7 @@ const updateSingleJob = {
   operationId: "updateSingleJob",
   parameters: [
     {
-      name: "",
+      name: "job_id",
       in: "path",
       description: "Job's ID",
       required: true,
