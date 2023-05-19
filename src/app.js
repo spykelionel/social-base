@@ -10,6 +10,7 @@ const path = require('path')
 const config = require("./config/env.config");
 const apiV1 = require("./docs");
 const userRouter = require("./routes/user.routes");
+const postRouter = require("./routes/post.routes");
 
 
 const app = express();
@@ -58,6 +59,7 @@ app.use(
 );
 
 app.use('/v1/users', userRouter);
+app.use('/v1/posts', postRouter);
 
 app.get("/", (req, res) => {
   res.redirect('/v1/docs')
