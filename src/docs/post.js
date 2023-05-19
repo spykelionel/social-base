@@ -217,6 +217,79 @@ const deleteSavedPost = {
   },
 };
 
+const likeSinglePost = {
+  tags: ["Post"],
+  description: "like a post",
+  operationId: "likeSinglePost",
+  parameters: [
+    {
+      name: "post_id",
+      in: "path",
+      description: "post's ID",
+      required: true,
+      type: "int",
+    },
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  responses: {
+    200: {
+      description: "posts saved successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: postResponseWp,
+          },
+        },
+      },
+    },
+    401: serverResponses[401],
+    404: serverResponses[404],
+    500: serverResponses[500],
+  },
+};
+
+const deletelikedPost = {
+  tags: ["Post"],
+  description: "delete a like from a post",
+  operationId: "deletelikedPost",
+  parameters: [
+    {
+      name: "post_id",
+      in: "path",
+      description: "post's ID",
+      required: true,
+      type: "int",
+    },
+  ],
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
+  responses: {
+    200: {
+      description: "posts saved successfully!",
+      content: {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: postResponseWp,
+          },
+        },
+      },
+    },
+    204: serverResponses[204],
+    401: serverResponses[401],
+    404: serverResponses[404],
+    500: serverResponses[500],
+  },
+};
+
 const updateSinglePost = {
   tags: ["Post"],
   description: "Update a post in the system",
@@ -296,6 +369,10 @@ const postPaths = {
   "/posts/save/{post_id}": {
     put: saveSinglePost,
     delete: deleteSavedPost,
+  },
+  "/posts/like/{post_id}": {
+    put: likeSinglePost,
+    delete: deletelikedPost,
   },
 };
 

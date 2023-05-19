@@ -1,6 +1,5 @@
 const { commentPaths, commentSchema } = require("./comment");
 const { jobPaths, jobSchema } = require("./job");
-const { likePaths, likeSchema } = require("./likes");
 const { postSchema, postPaths } = require("./post");
 const { userPaths, userSchema } = require("./user");
 const apiV1 = {
@@ -35,7 +34,6 @@ const apiV1 = {
     ...userPaths,
     ...postPaths,
     ...commentPaths,
-    ...likePaths,
     ...jobPaths,
   },
   components: {
@@ -50,7 +48,6 @@ const apiV1 = {
       ...userSchema,
       ...postSchema,
       ...commentSchema,
-      ...likeSchema,
       ...jobSchema,
     },
     responses: {

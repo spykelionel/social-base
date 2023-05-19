@@ -121,17 +121,67 @@ module.exports = {
       .catch((err) => console.error(err));
   },
 
+  likePost: async (req, res) => {
+    const user = req.user;
+    const { post_id } = req.params;
+    try {
+      logger.info(user);
+      await Post.updateOne(
+        { _id: post_id },
+        {
+          $push: { likes: user.id },
+        },
+        { new: true }
+      )
+        .then((result) => {
+          logger.info(result);
+          res.status(201).json({
+            ...result,
+            info: "successfully updated User's liked post",
+          });
+        })
+        .catch((err) => res.status(501).json(err));
+    } catch (error) {
+      logger.info(error);
+    }
+  },
+
+  deleteLikedPost: async (req, res) => {
+    const user = req.user;
+    const { post_id } = req.params;
+    try {
+      logger.info(user);
+      await Post.updateOne(
+        { _id: post_id },
+        {
+          $pull: { likes: user.id },
+        },
+        { new: true }
+      )
+        .then((result) => {
+          logger.info(result);
+          res.status(201).json({
+            ...result,
+            info: "successfully updated User's liked post",
+          });
+        })
+        .catch((err) => res.status(501).json(err));
+    } catch (error) {
+      logger.info(error);
+    }
+  },
+
   savePost: async (req, res) => {
     const user = req.user;
     const { post_id } = req.params;
     try {
-      logger.info(user)
+      logger.info(user);
       await User.updateOne(
         { _id: user.id },
         {
-          $push: { "savedPosts": post_id },
+          $push: { savedPosts: post_id },
         },
-        {new: true}
+        { new: true }
       )
         .then((result) => {
           logger.info(result);
@@ -150,12 +200,12 @@ module.exports = {
     const user = req.user;
     const { post_id } = req.params;
     try {
-      logger.info(user)
+      logger.info(user);
       await User.updateOne(
         { _id: user.id },
         {
-          $pull: { "savedPosts": post_id },
-        },
+          $pull: { savedPosts: post_id },
+        }
       )
         .then((result) => {
           logger.info(result);
