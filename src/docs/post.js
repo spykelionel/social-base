@@ -18,7 +18,11 @@ const createPost = {
   tags: ["Post"],
   description: "Create a new post in the system",
   operationId: "createPost",
-  security: [],
+  security: [
+    {
+      bearerAuth
+    }
+  ],
   requestBody: {
     content: {
       "application/json": {
@@ -290,7 +294,7 @@ const postPaths = {
     delete: deletePost,
   },
   "/posts/save/{post_id}": {
-    post: saveSinglePost,
+    put: saveSinglePost,
     delete: deleteSavedPost,
   },
 };
