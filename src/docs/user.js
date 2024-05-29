@@ -86,6 +86,7 @@ const authUser = {
   },
 };
 
+
 const deleteUser = {
   tags: ["User"],
   description: "Delete a user",
@@ -111,6 +112,7 @@ const deleteUser = {
     409: serverResponses[409],
   },
 };
+
 
 const getAllUsers = {
   tags: ["User"],
@@ -278,6 +280,7 @@ const userPaths = {
     patch: updateSingleUser,
     delete: deleteUser,
   },
+
 };
 
 const userSchema = {
@@ -285,4 +288,4 @@ const userSchema = {
   authUserBody,
 };
 
-module.exports = { userPaths, userSchema };
+module.exports =  { userPaths, userSchema };
