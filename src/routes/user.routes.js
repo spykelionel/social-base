@@ -11,7 +11,7 @@ const userRouter = require("express").Router({ strict: false });
 
 userRouter
   .post("/create", create)
-  .post('/auth/login', login)
+  .post("/auth/login", login)
   .get("/", verify, getAll)
   .get("/:user_id", verify, getOne)
   .delete("/:user_id", verify, deleteOne)

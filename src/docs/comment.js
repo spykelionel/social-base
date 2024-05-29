@@ -15,9 +15,9 @@ const createComment = {
   description: "Create a new Comment in the system",
   operationId: "createComment",
   security: [
-  {
-    bearerAuth
-  }
+    {
+      bearerAuth,
+    },
   ],
   requestBody: {
     content: {

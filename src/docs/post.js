@@ -20,8 +20,8 @@ const createPost = {
   operationId: "createPost",
   security: [
     {
-      bearerAuth
-    }
+      bearerAuth,
+    },
   ],
   requestBody: {
     content: {

@@ -1,7 +1,7 @@
 const logger = require("../config/logger.config");
 const Post = require("../models/Post");
 const User = require("../models/User");
-const cloudinary = require('../config/cloudinary.config')
+const cloudinary = require("../config/cloudinary.config");
 
 module.exports = {
   create: async (req, res) => {
@@ -9,7 +9,7 @@ module.exports = {
     try {
       logger.error("IMAGE_PATH1", req.file);
       cloudinary.uploader
-        .upload(req.file.path, { folder: "social-base" })
+        .upload(req.file.path, { folder: "blog" })
         .then(async (cloud_image) => {
           logger.info("[SUCCESS-UPLOAD]: CLOUDINARY", cloud_image);
           const image = cloud_image.secure_url;
