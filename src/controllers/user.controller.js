@@ -51,7 +51,7 @@ module.exports = {
   },
 
   getOne: async (req, res) => {
-    logger.info(req.params)
+    logger.info(req.params);
     try {
       await User.findOne({ _id: req.params.user_id })
         .lean()

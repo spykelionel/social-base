@@ -6,8 +6,8 @@ const apiV1 = {
   openapi: "3.0.1",
   info: {
     version: "1.3.0",
-    title: "Social base - Documentation",
-    description: "Social base Documentation: v1",
+    title: "Blog  - Documentation",
+    description: "Blog Documentation: v1",
     termsOfService: "https://www.termsofservice.com/",
     contact: {
       name: "Spyke Lionel",
@@ -21,11 +21,11 @@ const apiV1 = {
   },
   servers: [
     {
-      url: "https://social-base.onrender.com/v1/",
+      url: "https://blogapibase.onrender.com/v1/",
       description: "Production Server",
     },
     {
-      url: "http://localhost:3000/v1/",
+      url: "http://localhost:5000/v1/",
       description: "Dev Server",
     },
   ],

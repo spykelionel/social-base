@@ -9,8 +9,8 @@ const {
   likePost,
   deleteLikedPost,
 } = require("../controllers/post.controller");
-const { verify, } = require("../middleware/auth");
-const upload = require('./../config/multer.config')
+const { verify } = require("../middleware/auth");
+const upload = require("./../config/multer.config");
 
 const postRouter = require("express").Router({ strict: false });
 

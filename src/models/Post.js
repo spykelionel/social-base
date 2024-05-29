@@ -16,6 +16,12 @@ const postSchema = new mongoose.Schema(
       required: true,
       default: "61af868370c83eed2d5a56b5",
     },
+    cooments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,

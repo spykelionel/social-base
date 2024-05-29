@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const config = require('../config/env.config');
-const logger = require('../config/logger.config');
-const User = require('../models/User');
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("../config/env.config");
+const logger = require("../config/logger.config");
+const User = require("../models/User");
 
 const login = async (req, res) => {
   const client = req.body;
@@ -40,16 +40,16 @@ const login = async (req, res) => {
   });
 };
 const verify = (req, res, next) => {
-    try {
-        const token = req.headers["authorization"].split(" ")[1];
-        req.user = jwt.verify(token, config.JWT_SECRET);
-        next();
-      } catch (error) {
-        logger.error("Error verifying user", error)
-          return res.status(401).json({
-              message: "Auth failed"
-          })
-      }
+  try {
+    const token = req.headers["authorization"].split(" ")[1];
+    req.user = jwt.verify(token, config.JWT_SECRET);
+    next();
+  } catch (error) {
+    logger.error("Error verifying user", error);
+    return res.status(401).json({
+      message: "Auth failed",
+    });
+  }
 };
 
 module.exports = { login, verify };

@@ -16,8 +16,8 @@ const createJob = {
   operationId: "createJob",
   security: [
     {
-      bearerAuth
-    }
+      bearerAuth,
+    },
   ],
   requestBody: {
     content: {
